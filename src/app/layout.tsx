@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     default: DATA.name,
     template: `%s | ${DATA.name}`,
   },
-  description: DATA.description,
+  description: DATA.summary,
   icons: {
     icon: "/xprofile.jpg",
     shortcut: "/xprofile.jpg",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: `${DATA.name}`,
-    description: DATA.description,
+    description: DATA.summary,
     url: DATA.url,
     siteName: `${DATA.name}`,
     locale: "en_US",
