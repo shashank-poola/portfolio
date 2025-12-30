@@ -1,10 +1,11 @@
+"use client";
 import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
+import { Button } from "@/components/ui/button";
 import { ProjectCard } from "@/components/project-card";
 import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
@@ -21,8 +22,7 @@ import { Icons } from "@/components/icons";
 import { Mail, Calendar, MessageCircle, FileText } from "lucide-react";
 import Link from "next/link";
 import Markdown from "react-markdown";
-import { useState } from "react";
-
+import { useState, useState as ReactUseState } from "react";
 // Map icon strings to components
 const iconMap: Record<string, React.ReactNode> = {
   github: <Icons.github className="size-3" />,
@@ -41,6 +41,7 @@ const projectsWithIcons = PROJECTS_DATA.map(project => ({
 const BLUR_FADE_DELAY = 0.04;
 
 export default function Page() {
+  const [showAllProjects, setShowAllProjects] = useState(false);
   return (
     <div className="relative min-h-[100dvh]">
       {/* Vertical Layout Guides */}
@@ -131,7 +132,7 @@ export default function Page() {
                     yOffset={8}
                     text={DATA.name}
                   />
-                  <p className="text-muted-foreground text-base -mt-1">Full stack/web3 developer</p>
+                  <p className="text-muted-foreground text-base -mt-1">Full stack/Web3 developer</p>
                 </div>
               </div>
             </div>
@@ -335,13 +336,15 @@ export default function Page() {
                 "Postgresql": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg",
                 "Prisma": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prisma/prisma-original.svg",
                 "Docker": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-plain.svg",
+                "Anchor": "/anchor.png",
+                "Solana": "/solana.jpg",
                 "Git": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",
                 "Github": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg",
                 "Rust": "/rust.png",
                 "MongoDb": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg",
                 "Redis": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg",
                 "Vercel": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg",
-                "Tailwind": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
+                "Tailwind": "/tailwindcss.png",
                 "NodeJS": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",
                 "Bun": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bun/bun-original.svg",
               };
@@ -387,8 +390,9 @@ export default function Page() {
           <BlurFade delay={BLUR_FADE_DELAY * 12}>
             <h2 className="text-xl font-bold mb-4">Projects</h2>
           </BlurFade>
+          {/** LIMIT TO 4 PROJECTS INITIALLY; SHOW ALL IF showAllProjects IS TRUE **/}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {projectsWithIcons.map((project, id) => (
+            {(showAllProjects ? projectsWithIcons : projectsWithIcons.slice(0, 4)).map((project, id) => (
               <BlurFade
                 key={project.title}
                 delay={BLUR_FADE_DELAY * 13 + id * 0.05}
@@ -405,6 +409,20 @@ export default function Page() {
               </BlurFade>
             ))}
           </div>
+
+          {/** Show 'View All' button when collapsed **/}
+          {!showAllProjects && projectsWithIcons.length > 4 && (
+            <div className="flex justify-center mt-4">
+              <Button
+                onClick={() => setShowAllProjects(true)}
+                variant="outline"
+                size="default"
+                className="rounded-full"
+              >
+                View All Projects
+              </Button>
+            </div>
+          )}
         </section>
         </div>
 

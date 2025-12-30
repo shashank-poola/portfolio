@@ -4,6 +4,8 @@ export const SKILLS_DATA = [
   "React JS",
   "Express JS",
   "Javascript",
+  "Anchor",
+  "Solana",
   "TailwindCSS",
   "Bun",
   "NextJS",

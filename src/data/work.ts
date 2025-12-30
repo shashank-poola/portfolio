@@ -9,6 +9,6 @@ export const WORK_DATA = [
     start: "March 2025",
     end: "August 2025",
     description:
-      "• Spearheaded Jess chatbot for Jessup Cellars, achieving 78% user satisfaction\n\n• Orchestrated data pipelines processing 2K+ daily data points, improving model performance by 40%\n\n• Architected AI sentiment analysis system processing 5K+ Hebrew posts with 87% accuracy\n\n• Delivered 3 specialized AI agents, reducing manual processing time by 35%",
+      "• Built and delivered end-to-end product features for Monex Builder and Reframe Studio as a freelance full-stack developer\n\n• Created React + TypeScript multi-page applications with a strong focus on UX, performance, and maintainability\n\n• Designed scalable data pipelines handling 2K+ daily events, boosting model effectiveness by 40%",
   },
 ] as const;
