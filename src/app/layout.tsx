@@ -60,6 +60,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className="overflow-x-hidden">
+      <head>
+        {/* Google Analytics */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-PSJJ84TVRK"></script>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-PSJJ84TVRK');
+          `
+        }} />
+      </head>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased w-full overflow-x-hidden",
